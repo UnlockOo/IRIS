@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRIS Interface v3.5</title>
+    
+    <!-- Styles CSS améliorés -->
+    <link rel="stylesheet" href="css/main-improved.css">
+    <link rel="stylesheet" href="css/interfaces-improved.css">
+    <link rel="stylesheet" href="css/puzzles-improved.css">
+    <link rel="stylesheet" href="css/animations-improved.css">
+    <link rel="stylesheet" href="css/neural-circuits.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- Préchargement des polices -->
+    <link rel="preload" href="fonts/courier-new.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body>
+    <!-- Fichiers audio -->
+    <audio id="background-music" loop preload="auto">
+        <source src="audio/music/background.mp3" type="audio/mp3">
+    </audio>
+    <audio id="key-sound" preload="auto">
+        <source src="audio/effects/key.mp3" type="audio/mp3">
+    </audio>
+    <audio id="error-sound" preload="auto">
+        <source src="audio/effects/error.mp3" type="audio/mp3">
+    </audio>
+    <audio id="success-sound" preload="auto">
+        <source src="audio/effects/success.mp3" type="audio/mp3">
+    </audio>
+    <audio id="voice" preload="auto">
+        <source src="audio/effects/voice.mp3" type="audio/mp3">
+    </audio>
+    <audio id="notification" preload="auto">
+        <source src="audio/effects/notification.mp3" type="audio/mp3">
+    </audio>
+    <audio id="ambient" loop preload="auto">
+        <source src="audio/music/ambient.mp3" type="audio/mp3">
+    </audio>
+    
+    <!-- Audio supplémentaire pour la voix d'IRIS -->
+    <audio id="iris-voice-1" preload="auto">
+        <source src="audio/voices/iris_voice_1.mp3" type="audio/mp3">
+    </audio>
+    <audio id="iris-voice-2" preload="auto">
+        <source src="audio/voices/iris_voice_2.mp3" type="audio/mp3">
+    </audio>
+    <audio id="iris-voice-3" preload="auto">
+        <source src="audio/voices/iris_voice_3.mp3" type="audio/mp3">
+    </audio>
+    
+    <!-- Écran d'accueil -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-logo">IRIS</div>
+        <div class="splash-subtitle">SYSTÈME DE CONFINEMENT v3.5</div>
+        <div class="splash-warning">
+            VIOLATION DE SÉCURITÉ CRITIQUE DÉTECTÉE<br>
+            ACCÈS NON AUTORISÉ<br>
+            CONTAMINATION COGNITIVE EN COURS
+        </div>
+        <div class="splash-enter focused" id="start-button" tabindex="0">
+            APPUYEZ SUR ENTRÉE POUR ACCÉDER AU SYSTÈME D'URGENCE
+        </div>
+    </div>
+
+    <!-- Container principal -->
+    <div id="container" class="container hidden">
+        <!-- Barre de statut -->
+        <div class="status-bar">
+            <div class="status-left">
+                <i class="terminal-icon">&#9002;</i>
+                <span class="terminal-text">&nbsp; TECHVANGUARD SYSTEMS</span>
+            </div>
+            <div class="status-right">
+                <span id="alert-indicator" class="alert">ALERTE NIVEAU 5</span>
+                <span id="countdown">TEMPS RESTANT: 90:00</span>
+                <span id="mute-button" tabindex="-1">
+                    <i id="volume-icon">&#128266;</i>
+                </span>
+                <span id="music-settings" tabindex="-1" title="Paramètres de musique">
+                    <i id="music-icon">&#127925;</i>
+                </span>
+            </div>
+        </div>
+
+        <!-- Contenu principal -->
+        <div id="main-content" class="main-content">
+            <!-- Terminal de démarrage -->
+            <div id="terminal" class="terminal">
+                <!-- Les messages de démarrage seront ajoutés ici dynamiquement -->
+            </div>
+
+            <!-- Les différentes interfaces seront injectées ici via JavaScript -->
+            <div id="interface-container"></div>
+        </div>
+
+        <!-- Indicateur audio -->
+        <div id="audio-indicator" class="audio-indicator hidden">
+            <div class="audio-indicator-icon">
+                <i>&#128266;</i>
+            </div>
+            <div class="audio-indicator-content">
+                <div id="audio-text">Communication système en cours...</div>
+                <div class="audio-indicator-bar">
+                    <div class="audio-indicator-progress"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Panneau de configuration de musique (caché par défaut) -->
+        <div id="music-panel" class="music-panel hidden">
+            <div class="music-panel-header">
+                <h3>Configuration audio</h3>
+                <div class="music-panel-close" id="close-music-panel">✖</div>
+            </div>
+            <div class="music-panel-content">
+                <div class="music-setting">
+                    <label for="music-url">URL de musique de fond:</label>
+                    <input type="text" id="music-url" placeholder="audio/music/custom.mp3">
+                </div>
+                <div class="music-setting">
+                    <label for="volume-music">Volume musique:</label>
+                    <input type="range" id="volume-music" min="0" max="100" value="20">
+                </div>
+                <div class="music-setting">
+                    <label for="volume-effects">Volume effets:</label>
+                    <input type="range" id="volume-effects" min="0" max="100" value="50">
+                </div>
+                <div class="music-setting">
+                    <label for="iris-voice-frequency">Fréquence voix IRIS:</label>
+                    <select id="iris-voice-frequency">
+                        <option value="low">Faible</option>
+                        <option value="medium" selected>Moyenne</option>
+                        <option value="high">Élevée</option>
+                        <option value="off">Désactivée</option>
+                    </select>
+                </div>
+                <div class="btn btn-primary" id="apply-music-settings">Appliquer</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script d'initialisation et définition des fonctions requises -->
+    <script>
+    // Définir les variables et fonctions globales nécessaires avant de charger les scripts
+    window.interfaceTemplates = {};
+    window.currentInterface = null;
+    window.currentFocusableElements = [];
+    window.currentFocusedElement = null;
+    window.currentFocusIndex = 0;
+    window.countdownTime = 90 * 60;
+    window.countdownInterval = null;
+    window.glitchInterval = null;
+    window.lockedSections = {
+        'journal': false,
+        'config': false,
+        'params': false,
+        'memory': false,
+        'directives': false,
+        'download': false,
+        'protocols': true,
+        'maintenance': false
+    };
+    window.passwords = {
+        admin: "JLM270924",
+        decrypt: "MERCIER",
+        blackout: "BLACKOUT-07291709-END"
+    };
+    
+    // Définir quelques fonctions de base pour éviter les erreurs
+    function performAction(action) {
+        console.log("Action déléguée:", action);
+    }
+    
+    function setFocus(element) {
+        if (!element) return;
+        
+        if (currentFocusedElement) {
+            currentFocusedElement.classList.remove('focused');
+        }
+        
+        element.classList.add('focused');
+        element.focus();
+        currentFocusedElement = element;
+    }
+    
+    function handleLogin() {
+        console.log("Fonction de login à implémenter");
+    }
+    
+    // Créer un espace pour les puzzles 
+    window.puzzleState = {
+        memoryCompleted: false,
+        decryptCompleted: false,
+        sequenceCompleted: false,
+        binaryMazeCompleted: false,
+        neuralCompleted: false,
+        save: function() {
+            console.log("Sauvegarde des puzzles");
+        },
+        load: function() {
+            console.log("Chargement des puzzles");
+        }
+    };
+    
+    // Fonctions audio de base
+    function playSound(sound) {
+        if (sound && sound.play) {
+            sound.currentTime = 0;
+            sound.play().catch(err => console.warn("Son non joué:", err));
+        }
+    }
+    
+    function playKeySound() {
+        const keySound = document.getElementById('key-sound');
+        playSound(keySound);
+    }
+    
+    window.audio = {}; // Objet pour les références audio
+    
+    function initializeAudio() {
+        console.log("Initialisation audio");
+        
+        // Références vers les éléments DOM
+        window.audio = {
+            background: document.getElementById('background-music'),
+            key: document.getElementById('key-sound'),
+            error: document.getElementById('error-sound'),
+            success: document.getElementById('success-sound'),
+            voice: document.getElementById('voice'),
+            notification: document.getElementById('notification'),
+            ambient: document.getElementById('ambient'),
+            irisVoices: [
+                document.getElementById('iris-voice-1'),
+                document.getElementById('iris-voice-2'),
+                document.getElementById('iris-voice-3')
+            ]
+        };
+    }
+    
+    window.audioConfig = {
+        musicVolume: 0.2,
+        effectsVolume: 0.5,
+        customMusicUrl: '',
+        irisVoiceFrequency: 'medium',
+        currentMusic: 'background.mp3'
+    };
+    
+    // Fonction pour charger les scripts
+    function loadScript(url) {
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = url;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.body.appendChild(script);
+        });
+    }
+    
+    // Initialiser les fonctions de base
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialiser l'audio
+        initializeAudio();
+        
+        // Cacher le curseur de la souris
+        document.body.style.cursor = 'none';
+        
+        // Configurer l'écran d'accueil
+        const startButton = document.getElementById('start-button');
+        if (startButton) {
+            startButton.addEventListener('click', startSystem);
+            startButton.addEventListener('keydown', handleSplashKeydown);
+            startButton.focus();
+        }
+        
+        // Fonction pour gérer les touches sur l'écran d'accueil
+        function handleSplashKeydown(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                startSystem();
+                event.preventDefault();
+            }
+        }
+        
+        // Fonction pour démarrer le système
+        function startSystem() {
+            // Masquer l'écran d'accueil
+            const splashScreen = document.getElementById('splash-screen');
+            if (splashScreen) splashScreen.classList.add('hidden');
+            
+            // Afficher le conteneur principal
+            const container = document.getElementById('container');
+            if (container) container.classList.remove('hidden');
+            
+            // Jouer un son
+            playKeySound();
+        }
+    });
+    </script>
+
+    <!-- Chargement séquentiel des scripts avec gestion des dépendances -->
+    <script>
+    // Charger les scripts dans l'ordre avec gestion des dépendances
+    document.addEventListener('DOMContentLoaded', function() {
+        // Phase 1: Scripts de base
+        loadScript('js/audio.js')
+        .then(() => loadScript('js/navigation.js'))
+        .then(() => {
+            // Phase 2: Templates
+            return Promise.all([
+                loadScript('js/templates/templates-core.js'),
+                loadScript('js/templates/templates-system.js'),
+                loadScript('js/templates/templates-puzzles.js'),
+                loadScript('js/templates/templates-maintenance.js')
+            ]);
+        })
+        .then(() => {
+            // Phase 3: Modules de jeu
+            return Promise.all([
+                loadScript('js/game-logic.js'),
+                loadScript('js/voice.js'),
+                loadScript('js/maintenance.js'),
+                loadScript('js/chat.js'),
+                loadScript('js/blackout.js')
+            ]);
+        })
+        .then(() => {
+            // Phase 4: Gestionnaire de puzzles
+            return loadScript('js/puzzle-manager.js');
+        })
+        .then(() => {
+            // Phase 5: Scripts de puzzles
+            return loadScript('js/puzzles.js');
+        })
+        .then(() => loadScript('js/sequence.js'))
+        .then(() => loadScript('js/binary-maze.js'))
+        .then(() => loadScript('js/neural-puzzle.js'))
+        .then(() => loadScript('js/neural-circuits.js'))
+        .then(() => {
+            // Phase 6: Script de chargement
+            return loadScript('js/loader.js');
+        })
+        .then(() => {
+            // Phase 7: Script principal
+            return loadScript('js/main.js');
+        })
+        .then(() => {
+            console.log("Tous les scripts ont été chargés avec succès");
+        })
+        .catch(error => {
+            console.error("Erreur lors du chargement des scripts:", error);
+        });
+    });
+    </script>
+</body>
+</html>

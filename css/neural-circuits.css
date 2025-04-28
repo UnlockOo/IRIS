@@ -1,0 +1,424 @@
+/* Styles pour l'interface Neural Circuits Alignment */
+
+.neural-circuits-interface {
+    padding: 16px;
+}
+
+.neural-circuits-interface h2 {
+    border-bottom: 1px solid #006060;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+}
+
+.info-panel {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    background-color: rgba(0, 30, 40, 0.3);
+    border: 1px solid #004055;
+    border-radius: 4px;
+    padding: 16px;
+}
+
+.info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #004055;
+    padding-bottom: 8px;
+}
+
+.info-header h3 {
+    margin: 0;
+    color: #00FFFF;
+}
+
+.info-metrics {
+    display: flex;
+    gap: 24px;
+}
+
+.metric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.metric-label {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.metric-value {
+    font-weight: bold;
+    color: #00FFFF;
+}
+
+.instructions-panel {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 12px;
+    border-radius: 4px;
+}
+
+.instructions-panel h4 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #FFFF99;
+}
+
+.neural-workspace {
+    border: 1px solid #004055;
+    background-color: rgba(0, 20, 30, 0.5);
+    border-radius: 4px;
+    padding: 20px;
+    min-height: 400px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.circuit-panel {
+    display: none;
+}
+
+.circuit-panel.active {
+    display: block;
+}
+
+.circuit-panel h3 {
+    color: #00FFFF;
+    border-bottom: 1px solid #004055;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+}
+
+/* Phase 1: Éthique */
+.ethics-grid {
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.ethics-grid td {
+    width: 80px;
+    height: 80px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #004055;
+}
+
+.sum-cell {
+    background-color: rgba(0, 64, 72, 0.5);
+    color: #FFFF00;
+    font-weight: bold;
+}
+
+.grid-cell {
+    position: relative;
+}
+
+.draggable {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+    background-color: rgba(0, 40, 50, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    user-select: none;
+}
+
+.draggable[data-value^="+"] {
+    color: #00FF00;
+    border: 2px solid #00AA00;
+}
+
+.draggable[data-value^="-"] {
+    color: #FF5555;
+    border: 2px solid #AA0000;
+}
+
+/* Phase 2: Connexions neurales */
+.connections-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    gap: 40px;
+}
+
+.functions-list, .circuits-list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.function-item, .circuit-item {
+    border: 1px solid #004055;
+    border-radius: 4px;
+    padding: 12px;
+    background-color: rgba(0, 20, 30, 0.5);
+}
+
+.function-item {
+    cursor: grab;
+}
+
+.function-name, .circuit-name {
+    font-weight: bold;
+    color: #00FFFF;
+    margin-bottom: 4px;
+}
+
+.function-desc, .circuit-desc {
+    font-size: 0.9rem;
+    color: #AAA;
+}
+
+.circuit-drop {
+    margin-top: 12px;
+    height: 50px;
+    border: 1px dashed #006060;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 60, 60, 0.1);
+}
+
+.circuit-drop.active {
+    border-color: #00FFFF;
+    background-color: rgba(0, 255, 255, 0.1);
+}
+
+.circuit-drop.has-function {
+    border-style: solid;
+    background-color: rgba(0, 100, 100, 0.2);
+}
+
+/* Phase 3: Pondérations synaptiques */
+.weights-grid {
+    display: flex;
+    margin: 20px 0;
+    gap: 20px;
+}
+
+.synaptic-network {
+    flex: 2;
+    position: relative;
+    border: 1px solid #004055;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+}
+
+.weight-controls {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid #004055;
+    background-color: rgba(0, 20, 30, 0.5);
+    border-radius: 4px;
+}
+
+.weight-control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.weight-slider {
+    width: 150px;
+    margin-left: 10px;
+}
+
+.node {
+    fill: #111;
+    stroke: #006060;
+    stroke-width: 2;
+}
+
+.source-node {
+    stroke: #00AA00;
+}
+
+.target-node {
+    stroke: #FFAA00;
+}
+
+.connection {
+    stroke: #004055;
+    stroke-width: 2;
+}
+
+.weight-box {
+    fill: #00202A;
+    stroke: #004055;
+}
+
+.node-label, .weight-text {
+    fill: #FFF;
+    text-anchor: middle;
+    dominant-baseline: central;
+    font-size: 14px;
+}
+
+.target-value, .current-value {
+    fill: #AAA;
+    text-anchor: start;
+    dominant-baseline: central;
+    font-size: 12px;
+}
+
+.constraints-info {
+    margin: 20px 0;
+    padding: 12px;
+    background-color: rgba(0, 60, 60, 0.2);
+    border: 1px solid #006060;
+    border-radius: 4px;
+}
+
+/* Phase 4: Architecture */
+.architecture-container {
+    display: flex;
+    margin: 20px 0;
+    gap: 20px;
+}
+
+.neural-code {
+    flex: 1;
+    padding: 12px;
+    background-color: #00202A;
+    border: 1px solid #004055;
+    border-radius: 4px;
+    overflow-y: auto;
+    max-height: 500px;
+}
+
+.code-block {
+    font-family: "Courier New", monospace;
+    margin: 0;
+    padding: 0;
+    color: #DDD;
+}
+
+.line {
+    display: block;
+    padding: 2px 4px;
+    white-space: pre;
+}
+
+.line.anomaly {
+    background-color: rgba(153, 0, 0, 0.2);
+    border-left: 3px solid #AA0000;
+    color: #FF9999;
+}
+
+.line.correct {
+    border-left: 3px solid transparent;
+}
+
+.anomaly-panel {
+    flex: 1;
+    padding: 12px;
+    background-color: rgba(0, 20, 30, 0.5);
+    border: 1px solid #004055;
+    border-radius: 4px;
+    overflow-y: auto;
+}
+
+.anomaly-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.anomaly-item {
+    border: 1px solid #700;
+    background-color: rgba(153, 0, 0, 0.2);
+    padding: 12px;
+    border-radius: 4px;
+}
+
+.anomaly-header {
+    font-weight: bold;
+    color: #FF5555;
+    margin-bottom: 8px;
+}
+
+.anomaly-desc {
+    color: #FF9999;
+    margin-bottom: 12px;
+}
+
+.correction-input {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.correction-input label {
+    min-width: 80px;
+}
+
+.correction-input input, .correction-input select {
+    flex: 1;
+    background-color: black;
+    border: 1px solid #006060;
+    padding: 8px;
+    color: #00FFFF;
+    font-family: "Courier New", monospace;
+}
+
+/* Panneaux de résultat */
+.success-message, .failure-message {
+    text-align: center;
+    padding: 40px;
+}
+
+.success-message h3 {
+    color: #00FF00;
+    animation: pulse 2s infinite;
+    border: none;
+}
+
+.failure-message h3 {
+    color: #FF5555;
+    animation: blink 1s infinite;
+    border: none;
+}
+
+.success-icon, .failure-icon {
+    font-size: 5rem;
+    margin: 20px 0;
+}
+
+.success-icon {
+    color: #00FF00;
+}
+
+.failure-icon {
+    color: #FF5555;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .connections-container, .weights-grid, .architecture-container {
+        flex-direction: column;
+    }
+    
+    .weight-controls {
+        max-width: 100%;
+    }
+}

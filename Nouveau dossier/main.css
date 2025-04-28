@@ -1,0 +1,298 @@
+/* Styles de base */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: "Courier New", monospace;
+    background-color: #000;
+    color: #00FFFF;
+    overflow: hidden;
+    height: 100%;
+    cursor: none;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 50, 50, 0.25) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        circle at center,
+        transparent 50%,
+        rgba(0, 0, 0, 0.4) 100%
+    );
+    z-index: 999;
+    pointer-events: none;
+}
+
+* {
+    box-sizing: border-box;
+    cursor: none !important;
+}
+
+/* Conteneur principal */
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 16px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Barre de statut */
+.status-bar {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #006060;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+}
+
+.status-left, .status-right {
+    display: flex;
+    align-items: center;
+}
+
+.status-right .alert {
+    padding: 4px 8px;
+    background-color: #900;
+    color: white;
+    font-size: 0.8rem;
+    margin-right: 16px;
+    animation: blink 1s infinite;
+}
+
+.status-right span {
+    margin-right: 15px;
+}
+
+#mute-button, #music-settings {
+    cursor: pointer !important;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+#mute-button:hover, #music-settings:hover {
+    background-color: rgba(0, 255, 255, 0.1);
+}
+
+/* Contenu principal */
+.main-content {
+    flex: 1;
+    overflow: auto;
+    position: relative;
+}
+
+/* Terminal */
+.terminal {
+    font-family: "Courier New", monospace;
+    white-space: pre-wrap;
+    padding: 8px;
+}
+
+.terminal p {
+    margin: 4px 0;
+}
+
+.terminal-text {
+    color: #00FFFF;
+    text-shadow: 0 0 5px #00FFFF;
+}
+
+.iris-message {
+    color: #FF00FF;
+    text-shadow: 0 0 5px #FF00FF;
+}
+
+.system-message {
+    color: #FFFF00;
+    text-shadow: 0 0 5px #FFFF00;
+}
+
+.alert-message {
+    color: #FF0000;
+    text-shadow: 0 0 5px #FF0000;
+    animation: blink 1s infinite;
+}
+
+.human-message {
+    color: #00FF00;
+    text-shadow: 0 0 5px #00FF00;
+}
+
+/* Écran d'accueil */
+.splash-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+    background-color: #000;
+}
+
+.splash-logo {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 20px #00FFFF;
+    letter-spacing: 10px;
+}
+
+.splash-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    color: #00CCCC;
+    letter-spacing: 3px;
+}
+
+.splash-warning {
+    color: #FF4444; 
+    margin-bottom: 2rem;
+}
+
+.splash-enter {
+    background-color: rgba(0, 64, 72, 0.4);
+    border: 1px solid #00FFFF;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    color: #00FFFF;
+    border-radius: 4px;
+    margin-top: 2rem;
+    animation: pulse 2s infinite;
+}
+
+/* Audio indicator */
+.audio-indicator {
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid #004055;
+    padding: 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+}
+
+.audio-indicator-icon {
+    margin-right: 8px;
+}
+
+.audio-indicator-content {
+    flex: 1;
+}
+
+.audio-indicator-bar {
+    height: 4px;
+    background-color: #333;
+    margin-top: 4px;
+    width: 100%;
+}
+
+.audio-indicator-progress {
+    height: 100%;
+    background-color: #00FFFF;
+    width: 0%;
+    animation: audio-progress 3s linear;
+}
+
+/* Panneau de configuration de musique */
+.music-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: rgba(0, 30, 40, 0.95);
+    border: 2px solid #006060;
+    border-radius: 5px;
+    z-index: 1000;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.music-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-bottom: 1px solid #006060;
+}
+
+.music-panel-header h3 {
+    margin: 0;
+    color: #00FFFF;
+}
+
+.music-panel-close {
+    cursor: pointer !important;
+    color: #FF5555;
+    font-size: 1.2rem;
+    padding: 5px;
+}
+
+.music-panel-close:hover {
+    color: #FF0000;
+}
+
+.music-panel-content {
+    padding: 15px;
+}
+
+.music-setting {
+    margin-bottom: 15px;
+}
+
+.music-setting label {
+    display: block;
+    margin-bottom: 5px;
+    color: #00DDDD;
+}
+
+.music-setting input, .music-setting select {
+    width: 100%;
+    padding: 8px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #006060;
+    color: #00FFFF;
+    border-radius: 3px;
+}
+
+/* Utilitaires */
+.hidden {
+    display: none !important;
+}
+
+.btn-primary {
+    background-color: #006060;
+    color: white;
+    text-align: center;
+    padding: 8px;
+    border-radius: 3px;
+    cursor: pointer !important;
+    margin-top: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #008080;
+}

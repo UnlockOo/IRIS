@@ -1,0 +1,740 @@
+/**
+ * Styles des interfaces IRIS v3.5 améliorés
+ * Ce fichier contient les styles pour toutes les interfaces spécifiques
+ */
+
+/* Écran de mot de passe */
+.password-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    animation: fade-in 0.5s ease-out;
+}
+
+.password-box {
+    background-color: rgba(17, 25, 39, 0.8);
+    padding: 32px;
+    border-radius: 4px;
+    width: 400px;
+    border: 1px solid #006060;
+    box-shadow: 0 0 20px rgba(0, 96, 96, 0.3);
+    animation: slide-up 0.4s ease-out;
+}
+
+.password-box h2 {
+    color: white;
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #006060;
+    padding-bottom: 8px;
+}
+
+.input-group {
+    margin-bottom: 24px;
+}
+
+.input-group label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    color: #00DDDD;
+}
+
+.input-group input {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid #006060;
+    padding: 10px 12px;
+    color: #00FFFF;
+    font-family: "Courier New", monospace;
+    border-radius: 3px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #00FFFF;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.password-error {
+    color: #FF5555;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    padding: 8px 12px;
+    text-align: center;
+    background-color: rgba(153, 0, 0, 0.3);
+    border: 1px solid #700;
+    border-radius: 3px;
+    animation: blink 1s infinite;
+}
+
+.password-hint-box {
+    margin-bottom: 24px;
+    padding: 12px;
+    border: 1px solid #770;
+    background-color: rgba(153, 153, 0, 0.2);
+    color: #FFFF00;
+    border-radius: 3px;
+    font-size: 0.9rem;
+}
+
+.hint-title {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.button-group {
+    display: flex;
+    gap: 16px;
+}
+
+/* Menu d'administration */
+.admin-interface {
+    padding: 16px;
+    animation: fade-in 0.5s ease-out;
+}
+
+.admin-interface h2 {
+    border-bottom: 1px solid #006060;
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+    color: #FFFFFF;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.menu-card {
+    border: 1px solid #004055;
+    background-color: rgba(20, 40, 50, 0.5);
+    padding: 16px;
+    border-radius: 4px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: fade-in 0.5s ease-out;
+}
+
+.menu-card:hover {
+    box-shadow: 0 0 15px rgba(0, 96, 96, 0.3);
+    transform: translateY(-2px);
+}
+
+.menu-card h3 {
+    font-size: 1.1rem;
+    border-bottom: 1px solid #004055;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    color: #00DDDD;
+}
+
+.menu-card h3 i {
+    margin-right: 8px;
+    color: #00FFFF;
+}
+
+.menu-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-card li {
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    position: relative;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.1s;
+    cursor: pointer !important;
+}
+
+.menu-card li:hover, .menu-card li.focused {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-color: #006060;
+    transform: translateX(3px);
+}
+
+.menu-card li.locked {
+    opacity: 0.6;
+    cursor: not-allowed !important;
+}
+
+.menu-card li.locked:hover {
+    background-color: transparent;
+    border-color: transparent;
+    transform: none;
+}
+
+.menu-card li i {
+    margin-right: 8px;
+    color: #FF5555;
+}
+
+/* Mode maintenance */
+.maintenance-interface {
+    padding: 16px;
+    animation: fade-in 0.5s ease-out;
+}
+
+.maintenance-header {
+    border-bottom: 1px solid #006060;
+    padding-bottom: 8px;
+    margin-bottom: 24px;
+}
+
+.maintenance-status {
+    display: inline-block;
+    padding: 8px 12px;
+    margin-top: 8px;
+    background-color: #900;
+    color: white;
+    animation: blink 1s infinite;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+.maintenance-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.maintenance-stat {
+    border: 1px solid #004055;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 12px 16px;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-critical {
+    color: #FF5555;
+}
+
+.stat-warning {
+    color: #FFFF00;
+}
+
+.maintenance-card {
+    border: 1px solid #004055;
+    background-color: rgba(0, 30, 40, 0.3);
+    padding: 16px;
+    border-radius: 4px;
+    margin-bottom: 24px;
+}
+
+.maintenance-card h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    color: #00DDDD;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #004055;
+    padding-bottom: 8px;
+}
+
+.maintenance-tools {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
+.maintenance-tool {
+    padding: 12px 16px;
+    border: 1px solid #004055;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    cursor: pointer !important;
+    position: relative;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.1s;
+}
+
+.maintenance-tool:hover, .maintenance-tool.focused {
+    background-color: rgba(0, 96, 96, 0.2);
+    border-color: #006060;
+    transform: translateY(-2px);
+}
+
+.maintenance-tool .tool-icon {
+    margin-right: 12px;
+    color: #00FFFF;
+}
+
+/* Restauration des modules */
+.module-restoration {
+    padding: 16px;
+    animation: fade-in 0.5s ease-out;
+}
+
+.module-restoration h2 {
+    border-bottom: 1px solid #006060;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    color: #FFFFFF;
+}
+
+.restoration-description {
+    margin-bottom: 24px;
+    color: #00DDDD;
+}
+
+.restoration-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.restoration-option {
+    padding: 14px 16px;
+    border: 1px solid #004055;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    cursor: pointer !important;
+    position: relative;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.1s;
+    font-size: 1rem;
+}
+
+.restoration-option:hover, .restoration-option.focused {
+    background-color: rgba(0, 96, 96, 0.2);
+    border-color: #006060;
+    transform: translateX(3px);
+}
+
+.restoration-option .lock-icon {
+    margin-right: 8px;
+    color: #FF5555;
+}
+
+/* Diagnostic avancé */
+.diagnostic-interface {
+    padding: 16px;
+    animation: fade-in 0.5s ease-out;
+}
+
+.diagnostic-modules {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.diagnostic-module {
+    padding: 16px;
+    border-radius: 4px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.diagnostic-module.critical {
+    background-color: rgba(70, 0, 0, 0.3);
+    border-color: #700;
+}
+
+.diagnostic-module.warning {
+    background-color: rgba(70, 70, 0, 0.3);
+    border-color: #770;
+}
+
+.diagnostic-module.repaired {
+    background-color: rgba(0, 70, 0, 0.3);
+    border-color: #070;
+}
+
+.diagnostic-module h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+    color: #FFFFFF;
+}
+
+.module-status {
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+}
+
+.diagnostic-module.critical .module-status {
+    color: #FF5555;
+}
+
+.diagnostic-module.warning .module-status {
+    color: #FFFF00;
+}
+
+.diagnostic-module.repaired .module-status {
+    color: #00FF00;
+}
+
+.diagnostic-log-container {
+    margin-bottom: 24px;
+    border: 1px solid #004055;
+    border-radius: 4px;
+    padding: 16px;
+    background-color: rgba(0, 30, 40, 0.3);
+}
+
+.diagnostic-log-container h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #00DDDD;
+}
+
+.diagnostic-log {
+    height: 200px;
+    overflow-y: auto;
+    font-family: monospace;
+    background-color: black;
+    padding: 12px;
+    border-radius: 3px;
+    border: 1px solid #222;
+}
+
+.log-entry {
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+}
+
+.log-entry.system {
+    color: #00FFFF;
+}
+
+.log-entry.error {
+    color: #FF5555;
+}
+
+.log-entry.warning {
+    color: #FFFF00;
+}
+
+.log-entry.critical {
+    color: #FF0000;
+    animation: blink 1s infinite;
+}
+
+.log-entry.success {
+    color: #00FF00;
+}
+
+.log-entry.iris {
+    color: #FF00FF;
+}
+
+.diagnostic-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Classes communes pour interfaces */
+.confirmation-box {
+    padding: 16px;
+    background-color: rgba(0, 30, 40, 0.3);
+    border: 1px solid #004055;
+    border-radius: 4px;
+    margin-bottom: 24px;
+}
+
+.locked-container {
+    margin: 40px auto;
+    padding: 24px;
+    text-align: center;
+    border: 2px solid #900;
+    background-color: rgba(153, 0, 0, 0.2);
+    max-width: 500px;
+    border-radius: 4px;
+}
+
+.locked-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    color: #FF5555;
+}
+
+.locked-title {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #FF5555;
+}
+
+.locked-message {
+    color: #CCCCCC;
+}
+
+.warning-box {
+    background-color: rgba(153, 0, 0, 0.3);
+    border: 1px solid #700;
+    padding: 16px;
+    margin-bottom: 24px;
+    border-radius: 4px;
+    line-height: 1.5;
+}
+
+.warning-box p:last-child {
+    margin-bottom: 0;
+}
+
+.confirm-container {
+    margin-bottom: 24px;
+}
+
+.confirm-container p {
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+}
+
+.confirm-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+/* Séquence et entrée de code */
+.blackout-code-container {
+    margin-bottom: 24px;
+}
+
+.blackout-code-container label {
+    display: block;
+    margin-bottom: 8px;
+    color: #00DDDD;
+}
+
+.blackout-code-input {
+    width: 100%;
+    background-color: black;
+    border: 1px solid #006060;
+    padding: 10px 12px;
+    color: #00FFFF;
+    font-family: "Courier New", monospace;
+    border-radius: 3px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.blackout-code-input:focus {
+    outline: none;
+    border-color: #00FFFF;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.blackout-hint {
+    margin-bottom: 24px;
+    padding: 12px;
+    border: 1px solid #770;
+    background-color: rgba(153, 153, 0, 0.2);
+    color: #FFFF00;
+    border-radius: 3px;
+    font-size: 0.9rem;
+}
+
+.blackout-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+/* Blackout interface */
+.blackout-interface {
+    padding: 16px;
+    animation: fade-in 0.5s ease-out;
+}
+
+.blackout-interface h2 {
+    border-bottom: 1px solid #006060;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    color: #FFFFFF;
+}
+
+.blackout-interface h3 {
+    margin-bottom: 16px;
+    color: #00DDDD;
+}
+
+/* Certificate */
+.certificate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    animation: fade-in 0.5s ease-out;
+}
+
+.certificate-box {
+    border: 4px solid #070;
+    padding: 32px;
+    background-color: rgba(20, 30, 40, 0.9);
+    max-width: 600px;
+    box-shadow: 0 0 30px rgba(0, 96, 0, 0.3);
+    animation: zoom-in 0.5s ease-out;
+}
+
+.certificate-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.certificate-header h2 {
+    color: white;
+    margin-bottom: 8px;
+    border-bottom: none;
+}
+
+.certificate-header h3 {
+    color: #4f9;
+}
+
+.certificate-content {
+    border-top: 1px solid #070;
+    border-bottom: 1px solid #070;
+    padding: 16px 0;
+    margin-bottom: 24px;
+}
+
+.certificate-content p {
+    line-height: 1.6;
+}
+
+.certificate-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.detail-label {
+    color: #999;
+    margin-bottom: 4px;
+}
+
+.detail-value {
+    color: #00FFFF;
+    font-weight: bold;
+}
+
+.certificate-footer {
+    text-align: right;
+    margin-bottom: 24px;
+}
+
+.certificate-signature {
+    font-style: italic;
+    color: #FFFFFF;
+    margin-bottom: 4px;
+}
+
+.certificate-dept {
+    font-size: 0.8rem;
+    color: #AAAAAA;
+}
+
+.certificate-stamp {
+    text-align: center;
+    margin-top: 24px;
+}
+
+.stamp {
+    display: inline-block;
+    border: 2px solid #700;
+    padding: 8px 12px;
+    color: #f55;
+    font-size: 1.5rem;
+    transform: rotate(12deg);
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+.certificate-instruction {
+    margin-top: 24px;
+    color: white;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Moral choice */
+.moral-choice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    text-align: center;
+    animation: fade-in 0.5s ease-out;
+}
+
+.moral-box {
+    background-color: rgba(0, 30, 40, 0.9);
+    border: 2px solid #006060;
+    padding: 32px;
+    border-radius: 4px;
+    max-width: 800px;
+    margin-bottom: 32px;
+    box-shadow: 0 0 20px rgba(0, 96, 96, 0.3);
+    animation: zoom-in 0.4s ease-out;
+}
+
+.moral-header {
+    font-size: 1.5rem;
+    color: #FFFF99;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.moral-message {
+    color: #FF00FF;
+    font-size: 1.2rem;
+    margin-bottom: 32px;
+    line-height: 1.6;
+    text-shadow: 0 0 5px rgba(255, 0, 255, 0.5);
+    padding: 16px;
+    border: 1px solid #800080;
+    background-color: rgba(255, 0, 255, 0.1);
+    border-radius: 4px;
+    text-align: left;
+}
+
+.moral-options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.moral-option {
+    padding: 16px;
+    border: 1px solid #004055;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    text-align: left;
+    cursor: pointer !important;
+    transition: all 0.3s ease;
+}
+
+.moral-option:hover, .moral-option.focused {
+    border-color: #00FFFF;
+    background-color: rgba(0, 255, 255, 0.1);
+    transform: translateY(-3px);
+}
+
+.moral-option-header {
+    font-size: 1.1rem;
+    color: #00FFFF;
+    margin-bottom: 8px;
+}
+
+.moral-option-desc {
+    color: #CCCCCC;
+    font-size: 0.9rem;
+}

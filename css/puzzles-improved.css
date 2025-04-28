@@ -1,0 +1,801 @@
+/**
+ * Styles des puzzles pour l'interface IRIS v3.5
+ * Contient les styles pour tous les puzzles et défis
+ */
+
+/* Styles communs pour les interfaces de puzzle */
+.puzzle-interface {
+    padding: 16px;
+    animation: fade-in 0.5s ease-out;
+}
+
+.puzzle-interface h2 {
+    border-bottom: 1px solid #006060;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    color: #FFFFFF;
+}
+
+.puzzle-instruction {
+    margin-bottom: 24px;
+    color: #FFFF99;
+    font-size: 1.05rem;
+}
+
+.puzzle-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    background-color: rgba(0, 30, 40, 0.3);
+    border: 1px solid #004055;
+    border-radius: 4px;
+    flex-wrap: wrap;
+}
+
+.puzzle-stat {
+    display: flex;
+    align-items: center;
+    margin: 6px 12px 6px 0;
+}
+
+.stat-value {
+    margin-left: 8px;
+    font-weight: bold;
+    color: #00FFFF;
+}
+
+.puzzle-message {
+    min-height: 24px;
+    text-align: center;
+    font-weight: bold;
+    margin: 16px 0;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.puzzle-message.success {
+    color: #00FF00;
+    background-color: rgba(0, 100, 0, 0.2);
+    border: 1px solid #070;
+}
+
+.puzzle-message.error {
+    color: #FF5555;
+    background-color: rgba(100, 0, 0, 0.2);
+    border: 1px solid #700;
+}
+
+.puzzle-message.info {
+    color: #00CCCC;
+    background-color: rgba(0, 64, 72, 0.2);
+    border: 1px solid #004055;
+}
+
+.puzzle-hint {
+    margin-bottom: 24px;
+    padding: 12px 16px;
+    border: 1px solid #004055;
+    background-color: rgba(0, 64, 72, 0.2);
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+.hint-title {
+    color: #00FFFF;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+/* Puzzle de décryptage */
+.decrypt-interface {
+    padding: 16px;
+    animation: fade-in 0.5s ease-out;
+}
+
+.decrypt-instruction {
+    color: #FFFF99;
+    margin-bottom: 20px;
+}
+
+.decrypt-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.decrypt-input, .decrypt-output {
+    border: 1px solid #004055;
+    background-color: rgba(0, 30, 40, 0.3);
+    border-radius: 4px;
+    padding: 16px;
+}
+
+.decrypt-input h3, .decrypt-output h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    color: #00CCCC;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #004055;
+    padding-bottom: 8px;
+}
+
+.decrypt-text {
+    width: 100%;
+    min-height: 200px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid #006060;
+    padding: 12px;
+    color: #00FFFF;
+    font-family: "Courier New", monospace;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    border-radius: 3px;
+    resize: vertical;
+}
+
+.decrypted-output {
+    min-height: 200px;
+    color: #777;
+    font-family: "Courier New", monospace;
+    white-space: pre-wrap;
+    line-height: 1.5;
+    padding: 12px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid #333;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    overflow-y: auto;
+    margin-bottom: 16px;
+}
+
+.decrypt-controls-container {
+    margin-top: 16px;
+}
+
+.decrypt-key-group {
+    margin-bottom: 16px;
+}
+
+.decrypt-key-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #00CCCC;
+}
+
+.decrypt-key {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid #006060;
+    padding: 10px 12px;
+    color: #00FFFF;
+    font-family: "Courier New", monospace;
+    border-radius: 3px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    margin-bottom: 16px;
+}
+
+.decrypt-key:focus {
+    outline: none;
+    border-color: #00FFFF;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.decrypt-controls {
+    display: flex;
+    gap: 12px;
+}
+
+/* Quantum Kernel Recovery (memory puzzle) */
+.memory-interface {
+    padding: 16px;
+    animation: fade-in 0.5s ease-out;
+}
+
+.memory-instruction {
+    color: #FFFF99;
+    margin-bottom: 20px;
+}
+
+.memory-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    background-color: rgba(0, 30, 40, 0.3);
+    border: 1px solid #004055;
+    border-radius: 4px;
+    flex-wrap: wrap;
+}
+
+.memory-stat {
+    margin-right: 20px;
+}
+
+.quantum-kernel-box {
+    position: relative;
+    border: 1px solid #004055;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    padding: 0;
+    margin-bottom: 24px;
+    min-height: 450px;
+    overflow: hidden;
+}
+
+.connections-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.connections-svg line {
+    stroke-width: 2px;
+    transition: stroke 0.3s;
+}
+
+.connections-svg line.connection-inactive {
+    stroke: rgba(0, 64, 72, 0.4);
+}
+
+.connections-svg line.connection-partial {
+    stroke: rgba(0, 255, 255, 0.4);
+    stroke-dasharray: 5, 5;
+    animation: pulse 2s infinite;
+}
+
+.connections-svg line.connection-active {
+    stroke: rgba(0, 255, 255, 0.7);
+}
+
+.quantum-kernel-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+    z-index: 2;
+}
+
+.qk-module {
+    position: absolute;
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #004055;
+    background-color: rgba(0, 64, 72, 0.3);
+    width: 220px;
+    text-align: center;
+    transition: all 0.3s;
+    z-index: 3;
+    cursor: pointer !important;
+}
+
+.qk-module:hover, .qk-module.focused {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    transform: translateY(-3px);
+    z-index: 4;
+}
+
+.qk-module.locked {
+    background-color: rgba(30, 30, 30, 0.5);
+    border-color: #333;
+    opacity: 0.7;
+    cursor: not-allowed !important;
+}
+
+.qk-module.locked:hover {
+    box-shadow: none;
+    transform: none;
+}
+
+.qk-module.available {
+    background-color: rgba(0, 96, 96, 0.3);
+    border-color: #008080;
+}
+
+.qk-module.stabilized {
+    background-color: rgba(0, 100, 0, 0.3);
+    border-color: #070;
+}
+
+.module-title {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #FFFFFF;
+}
+
+.module-state {
+    font-size: 0.9rem;
+    color: #999;
+}
+
+.module-state-value {
+    font-weight: bold;
+}
+
+.module-state-value.unstable {
+    color: #FF5555;
+}
+
+.module-state-value.locked {
+    color: #777;
+}
+
+.module-state-value.available {
+    color: #00FFFF;
+}
+
+.module-state-value.stabilized {
+    color: #00FF00;
+}
+
+/* Niveaux et positions des modules */
+.level-1 {
+    top: 20px;
+}
+
+.level-2 {
+    top: 100px;
+}
+
+.level-3 {
+    top: 180px;
+}
+
+.level-4 {
+    top: 260px;
+}
+
+.level-5 {
+    top: 340px;
+}
+
+.position-center {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.position-left {
+    left: 30%;
+    transform: translateX(-50%);
+}
+
+.position-right {
+    left: 70%;
+    transform: translateX(-50%);
+}
+
+/* Panneau de séquence */
+.sequence-panel {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #006060;
+    background-color: rgba(0, 64, 72, 0.3);
+    border-radius: 4px;
+    animation: slide-up 0.3s ease-out;
+}
+
+.sequence-panel h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    text-align: center;
+    color: #00FFFF;
+}
+
+.sequence-digits {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.sequence-digit {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid #006060;
+    color: #00FFFF;
+    border-radius: 3px;
+}
+
+.sequence-digit.filled {
+    background-color: rgba(0, 64, 72, 0.4);
+    animation: pulse 1s infinite;
+}
+
+.sequence-buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.sequence-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    height: 40px;
+}
+
+.sequence-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+}
+
+.qk-message {
+    min-height: 24px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Séquence de restauration */
+.module-restoration {
+    padding: 16px;
+    animation: fade-in 0.5s ease-out;
+}
+
+.restoration-instruction {
+    margin-bottom: 16px;
+    color: #FFFFFF;
+}
+
+.sequence-input {
+    margin-bottom: 16px;
+    padding: 16px;
+    border: 1px solid #004055;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.sequence-slot {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #00FFFF;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 3px;
+}
+
+.sequence-slot.filled {
+    border-color: #006060;
+    background-color: rgba(0, 64, 72, 0.4);
+    animation: pulse 1s infinite;
+}
+
+.sequence-hint {
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    border: 1px solid #004055;
+    background-color: rgba(0, 64, 72, 0.2);
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
+
+.sequence-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.sequence-module {
+    border: 1px solid #004055;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 12px;
+    border-radius: 4px;
+    text-align: center;
+    cursor: pointer !important;
+    position: relative;
+    transition: all 0.2s;
+}
+
+.sequence-module:hover, .sequence-module.focused {
+    background-color: rgba(0, 96, 96, 0.2);
+    border-color: #006060;
+    transform: translateY(-3px);
+}
+
+.sequence-module .symbol {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    color: #00FFFF;
+}
+
+.sequence-module .name {
+    font-size: 0.8rem;
+    color: #CCCCCC;
+}
+
+.sequence-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* Binary Logic Maze (nouveau puzzle) */
+.binary-maze-interface {
+    padding: 16px;
+    animation: fade-in 0.5s ease-out;
+}
+
+.maze-instruction {
+    color: #FFFF99;
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+}
+
+.maze-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    background-color: rgba(0, 30, 40, 0.3);
+    border: 1px solid #004055;
+    border-radius: 4px;
+    flex-wrap: wrap;
+}
+
+.maze-stat {
+    margin-right: 20px;
+}
+
+.maze-container {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+@media (max-width: 950px) {
+    .maze-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.maze-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 4px;
+    aspect-ratio: 1;
+    border: 1px solid #004055;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    padding: 12px;
+}
+
+.maze-cell {
+    border: 1px solid #222;
+    background-color: rgba(0, 30, 40, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer !important;
+    transition: all 0.2s;
+}
+
+.maze-cell:hover, .maze-cell.focused {
+    border-color: #006060;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.maze-cell.valid {
+    border-color: #070;
+    background-color: rgba(0, 100, 0, 0.2);
+}
+
+.maze-cell.invalid {
+    border-color: #700;
+    background-color: rgba(100, 0, 0, 0.2);
+}
+
+.maze-cell.current {
+    border-color: #00FFFF;
+    background-color: rgba(0, 255, 255, 0.2);
+    animation: pulse 1s infinite;
+}
+
+.maze-cell.exit {
+    border-color: #FFFF00;
+    background-color: rgba(255, 255, 0, 0.1);
+}
+
+.maze-cell.wall {
+    background-color: rgba(50, 50, 50, 0.7);
+    cursor: not-allowed !important;
+}
+
+.maze-controls {
+    border: 1px solid #004055;
+    background-color: rgba(0, 30, 40, 0.3);
+    border-radius: 4px;
+    padding: 16px;
+}
+
+.maze-rules {
+    margin-bottom: 20px;
+}
+
+.maze-rules h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #00CCCC;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #004055;
+    padding-bottom: 8px;
+}
+
+.maze-rule-description {
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+}
+
+.rule-value {
+    font-weight: bold;
+    color: #00FFFF;
+}
+
+.maze-legend {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.maze-cursor, .maze-exit, .maze-wall {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.maze-cursor {
+    color: #00FFFF;
+}
+
+.maze-exit {
+    color: #FFFF00;
+}
+
+.maze-wall {
+    color: #777;
+}
+
+.maze-gate-and, .maze-gate-or, .maze-gate-xor, .maze-gate-not {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 24px;
+    margin-right: 8px;
+    font-size: 0.8rem;
+    border-radius: 3px;
+}
+
+.maze-gate-and {
+    background-color: rgba(0, 100, 0, 0.3);
+    border: 1px solid #070;
+    color: #00FF00;
+}
+
+.maze-gate-or {
+    background-color: rgba(100, 100, 0, 0.3);
+    border: 1px solid #770;
+    color: #FFFF00;
+}
+
+.maze-gate-xor {
+    background-color: rgba(100, 0, 100, 0.3);
+    border: 1px solid #707;
+    color: #FF00FF;
+}
+
+.maze-gate-not {
+    background-color: rgba(100, 0, 0, 0.3);
+    border: 1px solid #700;
+    color: #FF5555;
+}
+
+.maze-key-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.key-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.key-button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    background-color: rgba(0, 64, 72, 0.3);
+    border: 1px solid #004055;
+    color: #00FFFF;
+    border-radius: 3px;
+    cursor: pointer !important;
+    transition: all 0.2s;
+}
+
+.key-button:hover, .key-button.focused {
+    background-color: rgba(0, 96, 96, 0.4);
+    border-color: #00FFFF;
+    transform: scale(1.1);
+}
+
+.maze-message {
+    min-height: 24px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Responsive pour les puzzles */
+@media (max-width: 768px) {
+    .decrypt-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .quantum-kernel-box {
+        padding-bottom: 400px;
+    }
+    
+    .sequence-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 500px) {
+    .sequence-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .sequence-buttons {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .maze-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .maze-grid {
+        aspect-ratio: auto;
+        height: 350px;
+    }
+}

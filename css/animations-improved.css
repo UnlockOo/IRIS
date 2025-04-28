@@ -1,0 +1,259 @@
+/**
+ * Animations améliorées pour l'interface IRIS v3.5
+ * Ce fichier contient toutes les animations et effets visuels
+ */
+
+/* Animations de base */
+@keyframes pulse {
+    0% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 0.6; transform: scale(1); }
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+@keyframes audio-progress {
+    0% { width: 0%; }
+    100% { width: 100%; }
+}
+
+/* Animations de glitch */
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-5px, 5px); }
+    40% { transform: translate(-5px, -5px); }
+    60% { transform: translate(5px, 5px); }
+    80% { transform: translate(5px, -5px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes glitch-intense {
+    0% { transform: translate(0); }
+    10% { transform: translate(-10px, 10px); }
+    20% { transform: translate(-15px, -5px); }
+    30% { transform: translate(15px, 5px); }
+    40% { transform: translate(5px, -15px); }
+    50% { transform: translate(-5px, 15px); }
+    60% { transform: translate(-15px, -15px); }
+    70% { transform: translate(5px, 5px); }
+    80% { transform: translate(15px, -5px); }
+    90% { transform: translate(10px, 10px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes color-shift {
+    0% { filter: hue-rotate(0deg); }
+    33% { filter: hue-rotate(120deg); }
+    66% { filter: hue-rotate(240deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+@keyframes text-shadow-shift {
+    0% { text-shadow: 0 0 5px rgba(0, 255, 255, 0.8); }
+    25% { text-shadow: 2px 2px 5px rgba(255, 0, 255, 0.8); }
+    50% { text-shadow: -2px -2px 5px rgba(255, 255, 0, 0.8); }
+    75% { text-shadow: -2px 2px 5px rgba(0, 255, 0, 0.8); }
+    100% { text-shadow: 0 0 5px rgba(0, 255, 255, 0.8); }
+}
+
+@keyframes flicker {
+    0% { opacity: 1; }
+    7% { opacity: 0.8; }
+    10% { opacity: 1; }
+    27% { opacity: 1; }
+    30% { opacity: 0.6; }
+    33% { opacity: 1; }
+    70% { opacity: 1; }
+    72% { opacity: 0.4; }
+    77% { opacity: 1; }
+    85% { opacity: 0.8; }
+    90% { opacity: 1; }
+    97% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* Animation de scan */
+@keyframes scan-line {
+    0% { top: 0%; }
+    100% { top: 100%; }
+}
+
+/* Animations pour les transitions d'interface */
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes slide-up {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slide-down {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes zoom-in {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Animations pour les élements d'interface */
+@keyframes progress-pulse {
+    0% { background-color: rgba(0, 255, 255, 0.4); }
+    50% { background-color: rgba(0, 255, 255, 0.8); }
+    100% { background-color: rgba(0, 255, 255, 0.4); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes flow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Classes d'animation */
+.glitch {
+    animation: glitch 0.3s linear;
+    position: relative;
+}
+
+.glitch-intense {
+    animation: glitch-intense 0.5s linear;
+    position: relative;
+}
+
+.glitch::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 255, 255, 0.1);
+    mix-blend-mode: difference;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.color-glitch {
+    animation: color-shift 0.3s linear;
+}
+
+.text-glitch {
+    animation: text-shadow-shift 0.5s linear;
+}
+
+.flicker {
+    animation: flicker 2s infinite;
+}
+
+.scan {
+    position: relative;
+    overflow: hidden;
+}
+
+.scan::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(to bottom, 
+        rgba(0, 255, 255, 0) 0%,
+        rgba(0, 255, 255, 0.5) 50%,
+        rgba(0, 255, 255, 0) 100%);
+    left: 0;
+    animation: scan-line 2s linear infinite;
+    pointer-events: none;
+}
+
+/* Classes d'animation pour l'interface */
+.fade-in {
+    animation: fade-in 0.5s ease-out forwards;
+}
+
+.fade-out {
+    animation: fade-out 0.5s ease-in forwards;
+}
+
+.slide-up {
+    animation: slide-up 0.4s ease-out forwards;
+}
+
+.slide-down {
+    animation: slide-down 0.4s ease-out forwards;
+}
+
+.zoom-in {
+    animation: zoom-in 0.3s ease-out forwards;
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+.rotate {
+    animation: rotate 2s linear infinite;
+}
+
+.flow {
+    background: linear-gradient(-45deg, #00BBCC, #007777, #009999, #00FFFF);
+    background-size: 400% 400%;
+    animation: flow 3s ease infinite;
+}
+
+/* Classes utiles */
+.flashing {
+    animation: blink 1s infinite;
+}
+
+.pulsing {
+    animation: pulse 2s infinite;
+}
+
+.progress-pulsing {
+    animation: progress-pulse 1.5s infinite;
+}
+
+/* Indicateurs spécifiques */
+.alert-flashing {
+    animation: blink 0.5s infinite;
+    color: #FF5555;
+}
+
+.warning-flashing {
+    animation: blink 1s infinite;
+    color: #FFFF00;
+}
+
+.success-pulsing {
+    animation: pulse 2s infinite;
+    color: #00FF00;
+}
+
+/* Focus indicators */
+.focused {
+    box-shadow: 0 0 0 2px #00FFFF, 0 0 10px 2px rgba(0, 255, 255, 0.5);
+    position: relative;
+    z-index: 10;
+}
